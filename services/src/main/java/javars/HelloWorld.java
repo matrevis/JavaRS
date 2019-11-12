@@ -1,4 +1,4 @@
-package services;
+package javars;
 
 public class HelloWorld {
 	public static void main(String[] args) {
