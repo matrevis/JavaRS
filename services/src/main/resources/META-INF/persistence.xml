@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="db_something"
+		transaction-type="JTA">
+		<jta-data-source>java:/jdbc/myDBExample</jta-data-source>
+
+		<class>it.trevis.beans.DataExample</class>
+
+		<!-- Auto scan @Entity -->
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+		<!-- Dont use Hibernate specific options. JPA 2.1 provides javax.persistence.schema-generation.database.action 
+			that can be set to "create", "drop", "drop-and-create", "none". That way 
+			you keep your code JPA implementation independent -->
+
+		<properties>
+			<property name="connection.useUnicode" value="true" />
+			<property name="connection.characterEncoding" value="UTF-8" />
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="create" />
+		</properties>
+	</persistence-unit>
+
+</persistence>
