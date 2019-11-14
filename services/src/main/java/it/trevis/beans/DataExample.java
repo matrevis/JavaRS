@@ -25,4 +25,21 @@ public class DataExample implements Serializable{
 	@Column(name = "something")
 	private String something;
 
+	public String getSomething() {
+		return something;
+	}
+
+	public void setSomething(String something) {
+		this.something = something;
+	}
+
+	public BigInteger getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "DataExample [id=" + id + ", something=" + something + "]";
+	}
+
 }

@@ -13,24 +13,36 @@ import javax.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import it.trevis.beans.DataExample;
+
 //import it.secservizi.w4.kpi.beans.DataFromHomeBanking;
 
 @Stateless
 @LocalBean
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class SomethingDao implements Serializable{
-	
+public class SomethingDao implements Serializable {
+
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
 
 	private static final long serialVersionUID = 1L;
 
 	protected static final String PERSISTENCE_UNIT_NAME = "db_something";
-	
+
 	@PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
 	protected EntityManager entityManager;
-	
+
 	public SomethingDao() {
 		logger.trace("SomethingDao: creato oggetto SomethingDao..");
+	}
+
+	// save
+	public DataExample save(DataExample entity) {
+		try {
+			entityManager.persist(entity);
+		} catch (Exception e) {
+			logger.error("Errore nel tentativo di inserire i dati in DB..", e);
+		}
+		return entity;
 	}
 
 }
@@ -38,8 +50,8 @@ public class SomethingDao implements Serializable{
 //	public BigInteger getId(DataFromHomeBanking entity) {
 //		return entity.getId();
 //	}
-	
-	// save
+
+// save
 //	public DataFromHomeBanking save(DataFromHomeBanking entity) {
 //		try {
 //			entityManager.persist(entity);
@@ -49,8 +61,8 @@ public class SomethingDao implements Serializable{
 //		}
 //		return entity;
 //	}
-	
-	// read
+
+// read
 //	public DataFromHomeBanking read(DataFromHomeBanking entity) {
 //		try {	
 //			entityManager.find(entity.getClass(), entity.getId());

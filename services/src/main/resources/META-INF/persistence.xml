@@ -22,7 +22,7 @@
 			<property name="connection.characterEncoding" value="UTF-8" />
 			<property
 				name="javax.persistence.schema-generation.database.action"
-				value="create" />
+				value="none" />
 		</properties>
 	</persistence-unit>
 
