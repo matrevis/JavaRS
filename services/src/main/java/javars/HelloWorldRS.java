@@ -1,6 +1,6 @@
 package javars;
 
-//import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodHandles;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 @Path("/hello")
 public class HelloWorldRS {
 
-//	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
-	private static final Logger logger = LoggerFactory.getLogger(HelloWorldRS.class);
+	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
 
 	@GET
 	@Path("/")
