@@ -10,13 +10,14 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("hello")
+@Path("/hello")
 public class HelloWorldRS {
 
 //	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
 	private static final Logger logger = LoggerFactory.getLogger(HelloWorldRS.class);
 
 	@GET
+	@Path("/")
 	@Produces("text/plain")
 	public Response getHello() {
 		String response = "I'm the microserv Hello!";

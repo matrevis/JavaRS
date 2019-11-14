@@ -17,9 +17,21 @@
 		<logback.version>1.2.3</logback.version>
 		<javax.ws.rs.version>2.1.1</javax.ws.rs.version>
 		<jersey.container.version>2.29.1</jersey.container.version>
+		<javaee-api.version>8.0.1</javaee-api.version>
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
+        <maven-war-plugin.warName>HelloMicroService</maven-war-plugin.warName>
 	</properties>
 	
 	<dependencies>
+	
+		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 		<dependency>
@@ -35,40 +47,29 @@
 			<version>${logback.version}</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
-		<dependency>
-		    <groupId>javax.ws.rs</groupId>
-		    <artifactId>javax.ws.rs-api</artifactId>
-		    <version>${javax.ws.rs.version}</version>
-		</dependency>
-		
- 		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet</artifactId>
-			<version>${jersey.container.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
-		<dependency>
-		    <groupId>org.glassfish.jersey.inject</groupId>
-		    <artifactId>jersey-hk2</artifactId>
-		    <version>${jersey.container.version}</version>
-		</dependency>
-
 	</dependencies>
 	<build>
-		<finalName>HelloMicroService</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+<!--         <finalName>javaws</finalName> -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <warName>${maven-war-plugin.warName}</warName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 		
 
 </project>
