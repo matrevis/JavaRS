@@ -1,12 +1,19 @@
 package javars;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.PathSegment;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +30,65 @@ public class HelloWorldRS {
 	private SomethingDao dao;
 
 	@GET
-	@Path("/")
+	@Path("/ciao")
 	@Produces("text/plain")
 	public Response getHello() {
 		String response = "I'm the microserv Hello!";
 		logger.debug("La risposta del server è : {}", response);
 		return Response.status(200).entity(response).build();
+	}
+	
+	@GET
+	@Path("/")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response get() {
+		String response = "I'm the microserv Hello!";
+		logger.debug("La risposta del server è : {}", response);
+		return Response.status(200).entity(response).build();
+	}
+	
+	@GET
+	@Path("/{id}")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response getWithParams() {
+		String response = "I'm the microserv Hello!";
+		logger.debug("La risposta del server è : {}", response);
+		return Response.status(200).entity(response).build();
+	}
+	
+	@POST
+	@Path("/")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response create(String body) {
+		//dao.save(da);
+		return null;
+	}
+	
+	@DELETE
+	@Path("/")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response deleteAll() {
+		return null;
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response delete() {
+		return null;
+	}
+	
+	@PUT
+	@Path("/{}")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public Response put() {
+		return null;
 	}
 	
 	@GET
