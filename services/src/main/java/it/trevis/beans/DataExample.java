@@ -3,6 +3,8 @@ package it.trevis.beans;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+import javax.json.bind.JsonbBuilder;
+import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,9 +22,11 @@ public class DataExample implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_data_gen")
 	@SequenceGenerator(sequenceName = "seq_data", name = "seq_data_gen")
+	@JsonbProperty("id")
 	private BigInteger id;
 	
 	@Column(name = "something")
+	@JsonbProperty("something")
 	private String something;
 
 	public String getSomething() {
@@ -36,10 +40,13 @@ public class DataExample implements Serializable{
 	public BigInteger getId() {
 		return id;
 	}
+	
+	public String toJson() {
+		return JsonbBuilder.create().toJson(this);
+	}
 
 	@Override
 	public String toString() {
 		return "DataExample [id=" + id + ", something=" + something + "]";
 	}
-
 }

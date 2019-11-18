@@ -2,6 +2,7 @@ package it.trevis.dao;
 
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -14,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.trevis.beans.DataExample;
-
-//import it.secservizi.w4.kpi.beans.DataFromHomeBanking;
 
 @Stateless
 @LocalBean
@@ -43,6 +42,22 @@ public class SomethingDao implements Serializable {
 			logger.error("Errore nel tentativo di inserire i dati in DB..", e);
 		}
 		return entity;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String read() {
+		try {
+			String sqlString = new String("SELECT de FROM DataExample de");
+			List<DataExample> q = entityManager.createQuery(sqlString).getResultList();
+			StringBuilder sb = new StringBuilder();
+			for(DataExample de: q) {
+				sb.append(de.toJson());
+			}
+			return sb.toString();
+		} catch (Exception e) {
+			logger.error("Errore nel tentativo di recuperare i dati dal DB..", e);
+			return null;
+		}
 	}
 
 }
