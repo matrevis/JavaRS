@@ -1,4 +1,4 @@
-package javars;
+package it.trevis.services;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;

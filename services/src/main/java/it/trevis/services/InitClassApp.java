@@ -1,4 +1,4 @@
-package javars;
+package it.trevis.services;
 
 import java.util.HashSet;
 import java.util.Set;
