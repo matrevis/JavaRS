@@ -45,15 +45,11 @@ public class SomethingDao implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public String read() {
+	public List<DataExample> read() {
 		try {
 			String sqlString = new String("SELECT de FROM DataExample de");
 			List<DataExample> q = entityManager.createQuery(sqlString).getResultList();
-			StringBuilder sb = new StringBuilder();
-			for(DataExample de: q) {
-				sb.append(de.toJson());
-			}
-			return sb.toString();
+			return q;
 		} catch (Exception e) {
 			logger.error("Errore nel tentativo di recuperare i dati dal DB..", e);
 			return null;

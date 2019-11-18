@@ -1,10 +1,11 @@
 package javars;
 
 import java.lang.invoke.MethodHandles;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -31,14 +32,15 @@ public class HelloWorldRS {
 	@EJB
 	private SomethingDao dao;
 	
+	Jsonb jsonb = JsonbBuilder.create();
+	
 	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll() {
 		logger.debug("Chiamata a getAll()..");
-		String de = dao.read();
-		return Response.ok(de, MediaType.APPLICATION_JSON).build();
-//		return Response.status(200).entity("{\"ok\" : \"ok\"}").build();
+		List<DataExample> result = dao.read();
+		return Response.ok(jsonb.toJson(result), MediaType.APPLICATION_JSON).build();
 	}
 
 //	@GET
