@@ -12,7 +12,7 @@
   	<appender-ref ref="stdout" />
   </logger>
 
-  <root level="trace">
+  <root level="info">
     <appender-ref ref="stdout" />
   </root>
 </configuration>
